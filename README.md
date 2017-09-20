@@ -34,7 +34,7 @@ $("#clearSMSBtn").click(function(){
 ``````
 
 # # # 效果预览
-[效果预览](http://xfei.me/down/SMStime/)
+[点击这里](http://xfei.me/down/SMStime/)
 
 # # # 插件截图
 ![](http://xfei.me/uploads/2017/09/200928047962.png)
