@@ -32,3 +32,6 @@ $("#clearSMSBtn").click(function(){
     $("#getSMSBtn").resetSMStime();
 })
 ``````
+
+# # # 效果预览
+![](http://xfei.me/uploads/2017/09/200928047962.png)
