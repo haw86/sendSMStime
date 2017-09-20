@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>发送短信倒计时 jquery.sendSMStime</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/dom.css">
+        <script type="text/javascript" src="js/Zepto.js"></script>
+        <script type="text/javascript" src="js/Zepto.sendSMStime.js"></script>
+    </head>
+    <body>
+        <div class="box">
+            <div class=" explain">
+                <h1>发送短信验证码倒计时</h1>
+                开发者：似懂非懂 <br />
+                当前依赖：jquery <br />
+                兼容性：PC端、移动端兼可用 <br />
+                个人博客：<a href="http://www.xfei.me" target="_blank">www.xfei.me</a>
+            </div>
+            <div class="explain">
+                <h2>下载</h2>
+                依赖jQuery：<a href="http://www.xfei.me" target="_blank">下载 jQuery.sendSMStime</a><br />
+                依赖Zepto：<a href="http://www.xfei.me" target="_blank">下载 Zepto.sendSMStime</a><br />
+            </div>
+
+            <div class="ui-list">
+                <div class="label">
+                    手机号
+                </div>
+                <div class="op">
+                    <input type="text" class="ui-input" id="mobilePhone" />
+                </div>
+            </div>
+            <div class="ui-list">
+                <div class="label">
+                    验证码
+                </div>
+                <div class="op">
+                    <input type="text" class="ui-input" />
+                    <div class="ui-btn" id="getSMSBtn">获取验证码</div>
+                </div>
+            </div>
+            
+            
+            <div class="ui-btn white" id="clearSMSBtn">点我清除倒计时</div>
+        </div>
+        
+        
+        <script>
+            $(function(){
+                
+                //发送验证码倒计时
+                $("#getSMSBtn").sendSMStime({
+                    time:60,//重发短信间隔
+                    validFn:function(){
+                        //验证手机号码是否正确，如果正确，继续执行，错误不执行
+                        var val = $("#mobilePhone").val();
+                        if(/^1[345789]\d{9}$/.test(val)){
+                            //手机号码正确
+                            var isValidFalse = true;
+                        }else{
+                            //手机号验证失败
+                            var isValidFalse = false;
+                            alert("请输入正确的手机号码");
+                            $("#mobilePhone").focus();
+                        }
+                        return isValidFalse;
+                    },
+                    startFn:function(){
+                        //手机号码正确后的回调
+                        console.info("开始AJAX发送短信");
+                        
+                    },
+
+                    endFn:function(){
+                        //倒计时结束的回调
+                        console.info("倒计时结束啦，下班回家！");
+
+                    }
+                })
+                
+                //重置倒计时
+                $("#clearSMSBtn").click(function(){
+                    
+                    $("#getSMSBtn").resetSMStime();
+                })
+            })
+        </script>
+    </body>
+</html>
